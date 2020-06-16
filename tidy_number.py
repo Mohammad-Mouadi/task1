@@ -1,37 +1,43 @@
 
 def greatest_tidy_number(number):
-    number = list(number)
-    length = len(number)
-    for j in range(length - 1):  # we skipped the last element because it will be checked in the previous iteration
-        """
-        Algorithm: start with the most significant digit, if the next digit is smaller we subtract 1 from the
-        current digit if it is greater than the prior digit otherwise subtract 1 from the previous digit,
-        and then, replace all of the remaining digits with nines
-        """
-        if number[j] > number[j + 1]:
+    try:
+        positive_check = int(number)
+        if positive_check < 0:
+            return "Error: Negative number"
 
-            # tmp variable will point to the digit we should decrement by 1
-            tmp = j
+        number = list(number)
+        length = len(number)
+        for j in range(length - 1):  # we skipped the last element because it will be checked in the previous iteration
+            """
+            Algorithm: start with the most significant digit, if the next digit is smaller we subtract 1 from the
+            current digit if it is greater than the prior digit otherwise subtract 1 from the previous digit,
+            and then, replace all of the remaining digits with nines
+            """
+            if number[j] > number[j + 1]:
 
-            # Next while loop will subtract 1 from the current digit or the previous digits
-            while tmp != 0 and number[tmp] == number[tmp - 1]:
-                tmp -= 1
-            else:
-                number[tmp] = str((int(number[tmp]) - 1))
+                # tmp variable will point to the digit we should decrement by 1
+                tmp = j
 
-            for k in range(tmp + 1, length):  # replace remaining digits with 9s
-                number[k] = 9
-            break
+                # Next while loop will subtract 1 from the current digit or the previous digits
+                while tmp != 0 and number[tmp] == number[tmp - 1]:
+                    tmp -= 1
+                else:
+                    number[tmp] = str((int(number[tmp]) - 1))
 
-    list_to_string = ""  # list_to_string is to convert the list to a string
+                for k in range(tmp + 1, length):  # replace remaining digits with 9s
+                    number[k] = 9
+                break
 
-    # convert list to string
-    for j in range(len(number)):
-        list_to_string += str(number[j])
+        list_to_string = ""  # list_to_string is to convert the list to a string
 
-    number = int(list_to_string)
-    return number
+        # convert list to string
+        for j in range(len(number)):
+            list_to_string += str(number[j])
 
+        number = int(list_to_string)
+        return number
+    except ValueError:
+        return "Invalid number"
 
 try:
     file_name = input("Please enter file name(it has to be in project directory): \n")
@@ -53,6 +59,8 @@ try:
         # remove new line if there is any
         if test_case_list[len(test_case_list) - 1] == '\n':
             test_case_list.pop(len(test_case_list) - 1)
+
+
         num = greatest_tidy_number("".join(test_case_list))
 
         # convert the string to integer to remove leading zeros
