@@ -1,6 +1,6 @@
 import unittest
 
-from .TidyNumberGenerator import *
+from TidyNumberGenerator import *
 
 
 class TestTidyNumberGenerator(unittest.TestCase):
