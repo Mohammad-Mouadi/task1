@@ -1,5 +1,5 @@
 
-from .TidyNumberGenerator import *
+from task1.TidyNumberGenerator import *
 
 try:
     file_name = input("Please enter file name(it has to be in project directory): \n")

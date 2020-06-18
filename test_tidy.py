@@ -20,6 +20,9 @@ class TestTidyNumberGenerator(unittest.TestCase):
         with self.assertRaises(Exception):
             generate_greatest_tidy("-987a")
 
+    def test_short2(self):
+        self.assertEqual(generate_greatest_tidy("+132"), 129)
+
 
 if __name__ == '__main__':
     unittest.main()
