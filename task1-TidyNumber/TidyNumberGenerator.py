@@ -11,7 +11,7 @@ def generate_greatest_tidy(str_number):
     if is_valid_integer(str_number):
         int_number = int(str_number)
     else:
-        raise Exception
+        raise Exception("Invalid input")
     if int_number < 0:
         raise Exception("Negative input")
 
