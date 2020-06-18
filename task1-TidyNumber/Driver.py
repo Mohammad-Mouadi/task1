@@ -2,13 +2,13 @@ from TidyNumberGenerator import *
 
 try:
     file_name_to_read = input("Please enter file name(it has to be in project directory): \n")
-    f = open(file_name_to_read, "r")
+    pointer_to_file_to_read_from = open(file_name_to_read, "r")
 except IOError("File name does not exist"):
     exit(-1)
 
 # first line contains number of test cases, which will be in a separate line each after the first line
 try:
-    int_number_of_test_cases = int(f.readline())
+    int_number_of_test_cases = int(pointer_to_file_to_read_from.readline())
     if int_number_of_test_cases < 0:
         raise ValueError
 except ValueError("Invalid input"):
@@ -17,7 +17,7 @@ except ValueError("Invalid input"):
 list_to_be_written_on_a_file = []
 
 for index_of_line_number in range(int_number_of_test_cases):  # iterate over the lines
-    str_test_case = f.readline()  # Get a line that corresponds to a test case
+    str_test_case = pointer_to_file_to_read_from.readline()  # Get a line that corresponds to a test case
 
     """ 
     convert the string to a list because strings are immutable objects and we
@@ -28,14 +28,14 @@ for index_of_line_number in range(int_number_of_test_cases):  # iterate over the
     if str_test_case[len(str_test_case) - 1] == '\n':
         str_test_case = str_test_case[:len(str_test_case)-1]
 
-    tidy_number = generate_greatest_tidy(str_test_case)
+    tidy_number = generate_greatest_tidy_number(str_test_case)
 
     # convert the string to integer to remove leading zeros
     test_case_result = str("Case #" + str(index_of_line_number + 1) + ": " + str(tidy_number) + "\n")
     list_to_be_written_on_a_file.append(test_case_result)
 
-file_write = input("Enter file name you want to write on: \n")
-f = open(file_write, "w+")
+file_to_write_to = input("Enter file name you want to write on: \n")
+pointer_to_file_to_write_to = open(file_to_write_to, "w+")
 
 str_to_be_written_on_a_file = "".join(list_to_be_written_on_a_file)
-f.write(str_to_be_written_on_a_file)
+pointer_to_file_to_write_to.write(str_to_be_written_on_a_file)

@@ -6,7 +6,7 @@ def is_valid_integer(str_num):
         return False
 
 
-def generate_greatest_tidy(str_number):
+def generate_greatest_tidy_number(str_number):
     int_number = 0
     if is_valid_integer(str_number):
         int_number = int(str_number)
@@ -16,8 +16,8 @@ def generate_greatest_tidy(str_number):
         raise Exception("Negative input")
 
     list_of_digits = list(str(int_number))  # don't use str_number because it might have a leading '+' sign
-    number_of_digits = len(list_of_digits)
-    for index_for_digits in range(number_of_digits - 1):
+    int_number_of_digits = len(list_of_digits)
+    for index_for_digits in range(int_number_of_digits - 1):
         # we skipped the last digit because it will be checked in the previous iteration
         """
         Algorithm: start with the most significant digit, if the next digit is smaller we subtract 1 from the
@@ -39,13 +39,13 @@ def generate_greatest_tidy(str_number):
                 list_of_digits[index_of_digit_to_be_incremented] = str(int_decremented_digit)
 
             # replace remaining digits with 9s
-            for index_of_digit_to_replaced_by_nine in range(index_of_digit_to_be_incremented + 1, number_of_digits):
-                list_of_digits[index_of_digit_to_replaced_by_nine] = '9'
+            for index_of_digit_to_be_replaced_by_nine in range(index_of_digit_to_be_incremented + 1, int_number_of_digits):
+                list_of_digits[index_of_digit_to_be_replaced_by_nine] = '9'
             break
 
     # convert list to string
-    list_to_string = "".join(list_of_digits)
+    str_number_from_list_of_digits = "".join(list_of_digits)
 
-    int_tidy_number = int(list_to_string)  # remove leading zeros
+    int_tidy_number = int(str_number_from_list_of_digits)  # remove leading zeros
 
     return int_tidy_number
