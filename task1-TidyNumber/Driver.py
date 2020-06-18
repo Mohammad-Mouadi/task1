@@ -1,4 +1,4 @@
-from TidyNumberGenerator import *
+from TidyNumberGenerator import generate_greatest_tidy_number
 
 try:
     file_name_to_read = input("Please enter file name(it has to be in project directory): \n")
