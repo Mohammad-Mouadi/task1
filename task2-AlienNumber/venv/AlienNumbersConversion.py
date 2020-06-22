@@ -4,7 +4,8 @@ from BaseConversion import *
 class AlienNumbersConversion:
 
     @staticmethod
-    def covert_alien_number_to_target_language(str_alien_number: str, str_alien_digits: str, str_source_digits: str) -> str:
+    def covert_alien_number_to_target_language(str_alien_number: str, str_alien_digits: str,
+                                               str_target_digits: str) -> str:
         """
         Algorithm: This is just a conversion between bases because the digits of the alien language is in an ascending order
         As a result, we can use an array to store each digit of the alien language. Array length is the base of the language
@@ -12,25 +13,27 @@ class AlienNumbersConversion:
         """
 
         alien_digits_list = list(str_alien_digits)
-       # alien_digits_dict = {}
+        alien_digits_dict = {}
 
-        target_digits_list = list(str_source_digits)
-        str_alien_number = list(str_alien_number)
+        for index_of_alien_digit, alien_digit in enumerate(alien_digits_list):
+            alien_digits_dict[alien_digit] = index_of_alien_digit
+
+        alien_number_list = list(str_alien_number)
+
+        for index_of_alien_digit, alien_digit in enumerate(alien_number_list):
+            alien_number_list[index_of_alien_digit] = alien_digits_dict[alien_digit]
+
+        target_digits_list = list(str_target_digits)
+        int_source_base = len(str_alien_digits)
+        int_target_base = len(str_target_digits)
+
+        list_of_number_in_target_language = BaseConversion.convert(alien_number_list, int_source_base,
+                                                                   int_target_base)
+
+        for index_of_target_digit, target_digit in enumerate(list_of_number_in_target_language):
+            list_of_number_in_target_language[index_of_target_digit] = target_digits_list[target_digit]
 
 
+        str_number_in_target_language = "".join(list_of_number_in_target_language)
 
-        # the index is also the value of the alien digit in the language base
-        for index_of_digit_in_language_base in range(len(alien_digits_list)):
-            for index_of_alien_digit, alien_digit in enumerate(str_alien_number):
-                if alien_digit == alien_digits_list[index_of_digit_in_language_base]:
-                    str_alien_number[index_of_alien_digit] = int(index_of_digit_in_language_base)
-
-        list_number_in_source_language = BaseConversion.convert(str_alien_number, len(str_alien_digits),
-                                                                len(str_source_digits))
-
-        for i in len(list_number_in_source_language):
-            list_number_in_source_language = target_digits_list[list_number_in_source_language[i]]
-
-        str_number_in_source_language = "".join(list_number_in_source_language)
-
-        return str_number_in_source_language
+        return str_number_in_target_language
