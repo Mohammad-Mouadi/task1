@@ -1,4 +1,4 @@
-from AlienNumbersConversion import AlienNumbersConversion
+from AlienNumbersConverter import AlienNumbersConverter
 
 try:
     file_name_to_read = input("Please enter file name(it has to be in project directory): \n")
@@ -28,9 +28,8 @@ for index_of_line_number in range(int_number_of_test_cases):  # iterate over the
     if str_test_case[len(str_test_case) - 1] == '\n':
         str_test_case = str_test_case[:len(str_test_case)-1]
 
-    source_number, source_digits, target_digits = str_test_case.split(' ')
-    target_number = AlienNumbersConversion.covert_alien_number_to_target_language(source_number, source_digits,
-                                                                                  target_digits)
+
+    target_number = AlienNumbersConversion.covert(AlienNumbersConversion(str_test_case))
 
     test_case_result = str("Case #" + str(index_of_line_number + 1) + ": " + str(target_number) + "\n")
     list_to_be_written_on_a_file.append(test_case_result)
