@@ -1,0 +1,51 @@
+
+Installing py2exe with Python3.7 (works for 3.5 and 3.6 as well) on Windows10
+========
+
+
+
+Since py2exe project is not under development rn,
+this is a quick guide on how to install it on python 3.7 
+
+
+
+Installation
+------------
+
+1. (optional) create a virtual environment: 
+
+- first download virtialenv using the command:
+'pip install virtualenv '
+
+- the command 'virtualenv myenv' will create a virtual environment 
+called myenv in the current directory.
+
+-you can activate it (when in the directory) using: myenv\Scripts\activate
+
+
+2. installing py2exe
+
+-download the .whl distribution file from here:
+https://github.com/albertosottile/py2exe/releases/download/v0.9.3.2/py2exe-0.9.3.2-cp37-none-win_amd64.whl
+ 
+-install the file using (make sure to be in the directory of the .whl file): pip install "file name"
+
+
+
+Creating HelloWorld program
+---------------------------
+
+1. create a python file lets name it test.py with a single line 'print("Hello World")'
+
+2. create a setup.py file with the following inside:
+
+from distutils.core import setup
+import py2exe
+
+setup(console=['test.py'])
+
+3. go to the directory with the previous two files and run the command 'python setup.py py2exe'
+
+4. this will create a dist directory with the executable file in it, to test your program run the command 'test.exe'
+
+
