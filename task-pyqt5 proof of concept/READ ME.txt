@@ -1,1 +1,6 @@
+This is a helloWorld program for the proof of concept of pyqt5 for GUIs
+
+To install pyqt5 use:
 'pip install pyqt5' to install pyqt5
+
+To create a .exe file, i used pyinstaller instead of py2exe
