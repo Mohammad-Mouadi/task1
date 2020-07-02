@@ -3,4 +3,11 @@ This is a helloWorld program for the proof of concept of pyqt5 for GUIs
 To install pyqt5 use:
 'pip install pyqt5' to install pyqt5
 
-To create a .exe file, i used pyinstaller instead of py2exe
+To create a .exe file, i used pyinstaller instead of py2exe:
+
+py2exe can work with python 3.7, but with cannot with pyqt5, to make it work i created the exe file
+using py2exe and Pyinstaller, then got the missing Qt dlls from the resulting files from pyinstaller, 
+What was missing is:
+1. Qt Dlls
+2. plugin folder containing some dlls
+
