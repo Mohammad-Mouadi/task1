@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QGridLayout
+from PyQt5 import sip, QtCore, QtGui
 
 
 class HelloWindow(QMainWindow):
@@ -14,7 +15,7 @@ class HelloWindow(QMainWindow):
 
         self.label = QLabel(self)
         self.grid.addWidget(self.label, 1, 0)
-        self.label.move(50,50)
+        self.label.move(50, 50)
         self.button1 = QPushButton(self)
         self.button1.setText("Click me")
         self.button1.clicked.connect(self.button1_clicked)
