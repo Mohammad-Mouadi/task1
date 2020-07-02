@@ -4,21 +4,22 @@
 
 
 from distutils.core import setup
-#import py2exe
+
 
 class Target(object):
     '''Target is the baseclass for all executables that are created.
     It defines properties that are shared by all of them.
     '''
+
     def __init__(self, **kw):
         self.__dict__.update(kw)
 
         # the VersionInfo resource, uncomment and fill in those items
         # that make sense:
-        
+
         # The 'version' attribute MUST be defined, otherwise no versioninfo will be built:
         # self.version = "1.0"
-        
+
         # self.company_name = "Company Name"
         # self.copyright = "Copyright Company Name © 2013"
         # self.legal_copyright = "Copyright Company Name © 2013"
@@ -34,6 +35,7 @@ class Target(object):
 
     def __setitem__(self, name, value):
         self.__dict__[name] = value
+
 
 RT_BITMAP = 2
 RT_MANIFEST = 24
@@ -75,8 +77,6 @@ manifest_template = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </assembly>
 '''
 
-
-
 SimpleGUI = Target(
     # We can extend or override the VersionInfo of the base class:
     # version = "1.0",
@@ -84,7 +84,7 @@ SimpleGUI = Target(
     # comments = "Some Comments",
     # internal_name = "spam",
 
-    script="SimpleGUI.py", # path of the main script
+    script="SimpleGUI.py",  # path of the main script
 
     # Allows to specify the basename of the executable, if different from 'SimpleGUI'
     # dest_base = "SimpleGUI",
@@ -92,12 +92,11 @@ SimpleGUI = Target(
     # Icon resources:[(resource_id, path to .ico file), ...]
     # icon_resources=[(1, r"SimpleGUI.ico")]
 
-    other_resources = [(RT_MANIFEST, 1, (manifest_template % dict(prog="SimpleGUI", level="asInvoker")).encode("utf-8")),
-    # for bitmap resources, the first 14 bytes must be skipped when reading the file:
-    #                    (RT_BITMAP, 1, open("bitmap.bmp", "rb").read()[14:]),
-                      ]
-    )
-
+    other_resources=[(RT_MANIFEST, 1, (manifest_template % dict(prog="SimpleGUI", level="asInvoker")).encode("utf-8")),
+                     # for bitmap resources, the first 14 bytes must be skipped when reading the file:
+                     #                    (RT_BITMAP, 1, open("bitmap.bmp", "rb").read()[14:]),
+                     ]
+)
 
 # ``zipfile`` and ``bundle_files`` options explained:
 # ===================================================
@@ -139,19 +138,21 @@ SimpleGUI = Target(
 #     without unpacking to the file system.  This does not work for
 #     some dlls, so use with caution.
 
+datafiles = [("platforms", [r"C:\Users\mmouadi\Desktop\Repos\tasks\task-pyqt5 proof"
+                            r" of concept\venv\Lib\site-packages\PyQt5\Qt\plugins\platforms\qwindows.dll"])]
 
 py2exe_options = dict(
-    packages = [],
-    includes = ["PyQt5.QtWidgets"],
-##    excludes = "tof_specials Tkinter".split(),
-##    ignores = "dotblas gnosis.xml.pickle.parsers._cexpat mx.DateTime".split(),
-##    dll_excludes = "MSVCP90.dll mswsock.dll powrprof.dll".split(),
+    packages=[],
+    includes=[],
+    ##    excludes = "tof_specials Tkinter".split(),
+    ##    ignores = "dotblas gnosis.xml.pickle.parsers._cexpat mx.DateTime".split(),
+    ##    dll_excludes = "MSVCP90.dll mswsock.dll powrprof.dll".split(),
+    datafiles=datafiles,
     optimize=0,
-    compressed=False, # uncompressed may or may not have a faster startup
+    compressed=False,  # uncompressed may or may not have a faster startup
     bundle_files=3,
     dist_dir='dist',
-    )
-
+)
 
 # Some options can be overridden by command line options...
 
@@ -165,4 +166,3 @@ setup(name="name",
       zipfile=None,
       options={"py2exe": py2exe_options},
       )
-
